@@ -146,12 +146,12 @@ response = get(url)
 responses = response.text.split()
 log = {}
 # Находим herf, добавляем в словарь ключ с названием проекта и значение пустой массив
+build_error_pattern = compile(
+    r'(E:|error:|ERROR|Error|failed|FAILED|Could NOT find|could not find):?\s*(.*?)(?=\n\S|\Z)',
+    DOTALL | IGNORECASE)
 for tag in responses[50:]:
     if tag[:6] == 'href="':
         tag = tag.split(sep='"')[1]
-        build_error_pattern = compile(
-            r'(error:|failed|could not find):?\s*(.*?)(?=\n\S|\Z)',
-            DOTALL | IGNORECASE)
         log[f"{tag}"] = []
         log_content = get(f"{url}{tag}").text
         # С помощью регулярных выражений находим ошибки и добавляем их в массив
