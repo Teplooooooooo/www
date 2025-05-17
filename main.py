@@ -86,13 +86,7 @@ while True:
     except:
         print("Введите именно целое число из списка!")
 
-while True:
-    try:
-        n_clusters = int(input("Введите, на сколько типов нужно разделить ошибки: "))
-        break
-    except:
-        print("Введите именно целое число!")
-
+n_clusters = 30
 
 
 check = 0
